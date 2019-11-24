@@ -42,5 +42,6 @@ export default {
   "form.order.details": "Детали заказа",
   "form.orderDetails.amount": "Количество",
   "form.orderDetails.total": "Сумма",
+  "form.orderDetails.created_at": "Дата заказа",
   "form.order.total": "Итого"
 };

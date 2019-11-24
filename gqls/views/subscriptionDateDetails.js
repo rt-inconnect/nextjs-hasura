@@ -3,7 +3,7 @@ import { useSubscription } from "@apollo/react-hooks";
 
 const SUBSCRIPTION_DATE_DETAILS = gql`
   subscription subscriptionDateDetails {
-    v_date_details(order_by: { total: asc }) {
+    v_date_details {
       created_at
       id
       name

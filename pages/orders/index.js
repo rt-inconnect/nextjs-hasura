@@ -43,6 +43,7 @@ const Index = () => {
         dataSource={data[index].order_details}
         columns={columns}
         pagination={false}
+        className="default-header-style"
       />
     );
   };

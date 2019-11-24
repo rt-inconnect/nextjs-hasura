@@ -6,9 +6,12 @@ header .ant-menu {
 }
 main.ant-layout-content {
   padding: 0 50px;
+  margin-bottom: 50px;
 }
 main .ant-breadcrumb {
   margin: 16px 0px;
+  padding: 10px 15px;
+  background: #fff;
 }
 main .app-content {
   background: #f9f9f9;
@@ -35,7 +38,14 @@ main .app-content {
 .statistic-total .ant-statistic-content-value {
   font-size: 30px;
 }
-
+.ant-table-thead > tr > th {
+  background: #1f4679;
+  color: #fff;
+}
+.default-header-style .ant-table-thead > tr > th {
+  background: #fafafa;
+  color: rgba(0, 0, 0, 0.85);
+}
 @media screen and (max-width: 768px) {
   main.ant-layout-content {
     padding: 0 10px;
