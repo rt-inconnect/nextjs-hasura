@@ -6,6 +6,7 @@ export default gql`
       returning {
         id
         name
+        color
       }
     }
   }

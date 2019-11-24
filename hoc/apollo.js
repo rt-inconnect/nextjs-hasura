@@ -5,6 +5,13 @@ import { ApolloClient } from "apollo-client";
 import { InMemoryCache } from "apollo-cache-inmemory";
 import { HttpLink } from "apollo-link-http";
 import fetch from "isomorphic-unfetch";
+import ws from "isomorphic-ws";
+
+import { split } from "apollo-link";
+import { WebSocketLink } from "apollo-link-ws";
+import { getMainDefinition } from "apollo-utilities";
+
+// npm install --save apollo-link-ws apollo-link apollo-utilities subscriptions-transport-ws ws isomorphic-ws
 
 let apolloClient = null;
 
@@ -124,24 +131,32 @@ function initApolloClient(initialState) {
  * @param  {Object} [initialState={}]
  */
 function createApolloClient(initialState = {}) {
-  const defaultOptions = {
-    watchQuery: {
-      fetchPolicy: "no-cache",
-      errorPolicy: "ignore"
+  const httpLink = new HttpLink({
+    uri: "https://sales-doctor.herokuapp.com/v1/graphql", // Server URL (must be absolute)
+    credentials: "same-origin", // Additional fetch() options like `credentials` or `headers`
+    fetch
+  });
+  const wsLink = new WebSocketLink({
+    uri: "ws://sales-doctor.herokuapp.com/v1/graphql",
+    options: {
+      reconnect: true
     },
-    query: {
-      fetchPolicy: "no-cache",
-      errorPolicy: "all"
-    }
-  };
+    webSocketImpl: ws
+  });
+  const link = split(
+    // split based on operation type
+    ({ query }) => {
+      const { kind, operation } = getMainDefinition(query);
+      return kind === "OperationDefinition" && operation === "subscription";
+    },
+    wsLink,
+    httpLink
+  );
+
   // Check out https://github.com/zeit/next.js/pull/4611 if you want to use the AWSAppSyncClient
   return new ApolloClient({
     ssrMode: typeof window === "undefined", // Disables forceFetch on the server (so queries are only run once)
-    link: new HttpLink({
-      uri: "https://sales-doctor.herokuapp.com/v1/graphql", // Server URL (must be absolute)
-      credentials: "same-origin", // Additional fetch() options like `credentials` or `headers`
-      fetch
-    }),
+    link,
     cache: new InMemoryCache().restore(initialState)
   });
 }

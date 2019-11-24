@@ -8,6 +8,8 @@ export default {
   "app.actions": "Действия",
   "app.post": "Отправка данных на сервер...",
 
+  "app.main.salesAll": "Общая сумма продаж на сегодняшний день",
+
   "app.btn.create": "Добавить запись",
   "app.btn.delete": "Удалить запись",
   "app.btn.delete.confirm": "Вы действительно хотите удалить эту запись?",
@@ -32,6 +34,7 @@ export default {
   "form.rule.required": "Это поле обязательно для заполнения!",
   "form.client.name": "Имя клиента",
   "form.category.name": "Название категории",
+  "form.category.color": "Цвет",
   "form.product.name": "Название товара",
   "form.product.category": "Категория товара",
   "form.product.price": "Цена",

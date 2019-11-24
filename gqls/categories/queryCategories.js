@@ -7,6 +7,7 @@ const QUERY_CATEGORIES = gql`
     category(limit: $limit, offset: $offset, order_by: { id: desc }) {
       id
       name
+      color
     }
     category_aggregate {
       aggregate {
@@ -21,6 +22,7 @@ const QUERY_CATEGORIES_ALL = gql`
     category(order_by: { id: desc }) {
       id
       name
+      color
       products {
         id
         name

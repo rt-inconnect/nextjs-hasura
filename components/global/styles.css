@@ -11,9 +11,29 @@ main .ant-breadcrumb {
   margin: 16px 0px;
 }
 main .app-content {
-  background: #fff;
+  background: #f9f9f9;
   padding: 24px;
   min-height: 280px;
+}
+.ant-statistic {
+  text-align: center;
+  background: #ccc;
+  padding: 20px 10px;
+}
+.ant-statistic-title {
+  color: #f9f9f9;
+}
+.ant-statistic-content {
+  color: #f9f9f9;
+}
+.statistic-total.ant-statistic {
+  background: #1f4679;
+}
+.statistic-total .ant-statistic-title {
+  font-size: 20px;
+}
+.statistic-total .ant-statistic-content-value {
+  font-size: 30px;
 }
 
 @media screen and (max-width: 768px) {

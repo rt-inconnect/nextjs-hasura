@@ -6,6 +6,7 @@ const CATEGORY_BY_PK = gql`
     category_by_pk(id: $id) {
       id
       name
+      color
     }
   }
 `;
