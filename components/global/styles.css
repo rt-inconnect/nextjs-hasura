@@ -1,0 +1,23 @@
+body {
+  background: #f0f2f5;
+}
+header .ant-menu {
+  line-height: 64px;
+}
+main.ant-layout-content {
+  padding: 0 50px;
+}
+main .ant-breadcrumb {
+  margin: 16px 0px;
+}
+main .app-content {
+  background: #fff;
+  padding: 24px;
+  min-height: 280px;
+}
+
+@media screen and (max-width: 768px) {
+  main.ant-layout-content {
+    padding: 0 10px;
+  }
+}

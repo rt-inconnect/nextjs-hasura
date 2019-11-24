@@ -1,14 +1,14 @@
 import { useRouter } from "next/router";
 import { menuItems, buildBreadcrumbsTree } from "constants/menuItems";
 
+import { Layout } from "antd";
+const { Header, Content } = Layout;
+
 import Head from "./Head";
 import Menu from "./Menu";
 import Breadcrumb from "./Breadcrumb";
 import "antd/dist/antd.css";
-
-const layoutStyle = {
-  margin: "10px 20px"
-};
+import "./styles.css";
 
 export default ({ children }) => {
   const { route } = useRouter();
@@ -17,13 +17,15 @@ export default ({ children }) => {
   return (
     <>
       <Head title={items[items.length - 1].name} />
-      <Menu
-        style={{ marginBottom: 20 }}
-        selectedItem={selectedItem}
-        menuItems={menuItems}
-      />
-      <Breadcrumb style={{ margin: "0 40px 20px" }} items={items} />
-      <div style={layoutStyle}>{children}</div>
+      <Layout>
+        <Header>
+          <Menu selectedItem={selectedItem} menuItems={menuItems} />
+        </Header>
+        <Content>
+          <Breadcrumb items={items} />
+          <div className="app-content">{children}</div>
+        </Content>
+      </Layout>
     </>
   );
 };

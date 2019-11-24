@@ -1,9 +1,9 @@
-import { Form, Button, Icon, Spin } from "antd";
-import Router from "next/router";
+import { Form, Button, Icon, Spin, Row, Col } from "antd";
+import { useRouter } from "next/router";
 import { useMutation } from "@apollo/react-hooks";
 import i18n from "constants/i18n";
 
-const defaultStyle = { width: 800, margin: "20px auto" };
+const defaultStyle = { margin: "20px" };
 
 export default (BaseComponent) => ({
   form,
@@ -14,18 +14,23 @@ export default (BaseComponent) => ({
   variables = {},
   ...props
 }) => {
+  const router = useRouter();
   const [handleMutation, { loading: loadingMutation }] = useMutation(mutation);
+
+  const onBack = () => {
+    if (Object.keys(router.components).length < 3) {
+      return router.push("/" + router.pathname.split("/")[1]);
+    }
+    return router.back();
+  };
 
   const onSubmit = (e) => {
     e.preventDefault();
     form.validateFields((err, values) => {
       if (!err) {
-        // console.log({ ...values, ...variables });
         handleMutation({
           variables: { ...values, ...variables },
-          update: () => {
-            Router.back();
-          }
+          update: onBack
         });
       }
     });
@@ -33,7 +38,7 @@ export default (BaseComponent) => ({
 
   return (
     <>
-      <Button type="default" onClick={() => Router.back()}>
+      <Button type="default" onClick={onBack}>
         <Icon type="left" />
         {i18n["app.back"]}
       </Button>
@@ -42,12 +47,16 @@ export default (BaseComponent) => ({
         size="large"
         tip={i18n["app.post"]}
       >
-        <Form layout="vertical" style={style} onSubmit={onSubmit}>
-          <BaseComponent form={form} {...props} />
-          <Button type="primary" htmlType="submit">
-            {i18n["app.save"]}
-          </Button>
-        </Form>
+        <Row type="flex" justify="center">
+          <Col xl={12} xs={24} lg={20}>
+            <Form layout="vertical" style={style} onSubmit={onSubmit}>
+              <BaseComponent form={form} {...props} />
+              <Button type="primary" htmlType="submit">
+                {i18n["app.save"]}
+              </Button>
+            </Form>
+          </Col>
+        </Row>
       </Spin>
     </>
   );
