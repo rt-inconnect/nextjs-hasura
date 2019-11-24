@@ -36,6 +36,8 @@ export default {
   "form.product.category": "Категория товара",
   "form.product.price": "Цена",
   "form.order.client": "Клиент",
+  "form.order.details": "Детали заказа",
   "form.orderDetails.amount": "Количество",
-  "form.orderDetails.total": "Сумма"
+  "form.orderDetails.total": "Сумма",
+  "form.order.total": "Итого"
 };

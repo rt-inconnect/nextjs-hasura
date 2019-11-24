@@ -17,6 +17,10 @@ const QUERY_ORDERS = gql`
         id
         id_order
         id_product
+        product {
+          id
+          name
+        }
         amount
         price
         total

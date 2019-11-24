@@ -9,7 +9,8 @@ export default ({
   page,
   pageSize,
   total,
-  style = { marginTop: 20 }
+  style = { marginTop: 20 },
+  ...other
 }) => {
   const { route } = useRouter();
 
@@ -37,6 +38,7 @@ export default ({
         dataSource={data}
         loading={loading}
         pagination={pagination}
+        {...other}
       />
     </>
   );

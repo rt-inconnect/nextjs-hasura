@@ -31,7 +31,8 @@ const Index = () => {
       },
       {
         title: i18n["form.product.price"],
-        dataIndex: "price"
+        dataIndex: "price",
+        render: (text) => `${text}$`
       }
     ],
     {
