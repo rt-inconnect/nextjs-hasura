@@ -137,7 +137,7 @@ function createApolloClient(initialState = {}) {
     fetch
   });
   const wsLink = new WebSocketLink({
-    uri: "ws://sales-doctor.herokuapp.com/v1/graphql",
+    uri: "wss://sales-doctor.herokuapp.com/v1/graphql",
     options: {
       reconnect: true
     },

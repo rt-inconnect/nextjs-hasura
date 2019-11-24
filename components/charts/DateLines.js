@@ -16,7 +16,7 @@ import moment from "moment";
 const TooltipComponent = ({ payload }) => {
   if (!payload || !payload[0]) return null;
   const rec = payload[0].payload;
-  console.log(payload[0]);
+
   return (
     <Card
       size="small"
